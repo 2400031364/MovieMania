@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TourNest - Explore</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      color: #333;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 80px;
+      background-color: rgba(255, 255, 255, 0.95);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #00d9ff;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      position: relative;
+    }
+
+    .nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #00d9ff;
+    }
+
+    .book-btn {
+      background: #00d9ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .hero {
+      background: url('hero.jpg') no-repeat center center/cover;
+      height: 100vh;
+      padding-top: 120px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero-text h1 {
+      font-size: 50px;
+      font-weight: bold;
+    }
+
+    .btn-explore {
+      margin-top: 20px;
+      display: inline-block;
+      background: #00d9ff;
+      padding: 12px 25px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .booking-panel {
+      background: white;
+      color: black;
+      padding: 30px;
+      width: 80%;
+      margin: 30px auto;
+      box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      background: #f1f1f1;
+      border: none;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: #00d9ff;
+      color: white;
+    }
+
+    .booking-form {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .booking-form input,
+    .booking-form label {
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .booking-form input[type="text"],
+    .booking-form input[type="number"],
+    .booking-form input[type="date"] {
+      border: 1px solid #ccc;
+    }
+
+    .booking-form input[type="range"] {
+      grid-column: span 2;
+    }
+
+    .btn-search {
+      background: #00d9ff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      grid-column: span 2;
+      cursor: pointer;
+    }
+
+    .top-destinations, .packages {
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .top-destinations h2, .packages h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .top-destinations p, .packages p {
+      color: #777;
+      margin-bottom: 40px;
+    }
+
+    .destination-grid, .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .destination-card, .package-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+
+    .destination-card {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .destination-info {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      color: white;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .package-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .package-content {
+      padding: 15px;
+      text-align: left;
+    }
+
+    .package-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stars {
+      color: gold;
+      font-size: 14px;
+    }
+
+    .btn-book {
+      background: #00d9ff;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .special-offer-block {
+      padding: 60px 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+
+    /* Blog Section */
+    #blog {
+      padding: 100px 40px;
+      background: #fdfdfd;
+      text-align: center;
+    }
+
+    #blog h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    #blog p {
+      color: #777;
+      margin-bottom: 40px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .blog-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .blog-content {
+      padding: 15px;
+    }
+
+    .blog-meta {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .blog-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .blog-desc {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .read-more {
+      color: #00d9ff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Tour<span>Nest</span></div>
+    <nav class="nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#destination">Destination</a>
+      <a href="#packages">Packages</a>
+      <a href="#special-offers-section">Special Offers</a>
+      <a href="#blog">Blog</a>
+      <button class="book-btn">Book Now</button>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Explore the<br>Beauty of the<br>Beautiful World</h1>
+      <a href="#destination" class="btn-explore">Explore Now</a>
+    </div>
+    <div class="booking-panel">
+      <div class="tabs">
+        <button class="tab active">Tours</button>
+        <button class="tab">Hotels</button>
+        <button class="tab">Flights</button>
+      </div>
+      <form class="booking-form">
+        <input type="text" placeholder="Enter Tour Destination Country" />
+        <input type="text" placeholder="Enter Your Destination Location" />
+        <input type="date" />
+        <input type="date" />
+        <input type="number" placeholder="Duration" />
+        <input type="number" placeholder="Members" />
+        <label>Budget</label>
+        <input type="range" min="1000" max="10000" />
+        <button type="submit" class="btn-search">Search</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="top-destinations" id="destination">
+    <h2>Top Destination</h2>
+    <p>Duis aute irure dolor in velit esse cillum dolore eu fugiat nulla.</p>
+    <div class="destination-grid">
+      <div class="destination-card" style="background-image: url('china.jpg');">
+        <div class="destination-info">
+          <h3>China</h3>
+          <p>20 Tours<br>15 Places</p>
+        </div>
+      </div>
+      <div class="destination-card" style="background-image: url('venezula.jpg');">
+        <div class="destination-info">
+          <h3>Venezuela</h3>
+          <p>12 Tours<br>9 Places</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="packages" id="packages">
+    <h2>Special Packages</h2>
+    <p>Duis aute irure dolor in velit esse cillum dolore eu fugiat nulla.</p>
+    <div class="packages-grid">
+      <div class="package-card">
+        <img src="italy.jpg" alt="Italy" />
+        <div class="package-content">
+          <div class="package-header">
+            <h3>Italy</h3>
+            <strong>$499</strong>
+          </div>
+          <ul>
+            <li>5 Days 6 Nights</li>
+            <li>5 Star Accommodation</li>
+            <li>Transportation</li>
+            <li>Food Facilities</li>
+          </ul>
+          <div class="stars">⭐️⭐️⭐️⭐️⭐️ 2544 Reviews</div>
+          <button class="btn-book">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="special-offer-block" id="special-offers-section">
+    <div class="package-card" style="max-width: 800px; margin: 0 auto; background-color: #e0f7fa; border: 1px solid #00bcd4;">
+      <img src="thailand.jpg" alt="Thailand Special Offer" style="width: 100%; height: auto; object-fit: cover;">
+      <div class="package-content" style="text-align: center;">
+        <div class="special-offer" style="margin-bottom: 10px; font-weight: bold; font-size: 1.2em;">Special Offer</div>
+        <div class="discount" style="font-size: 2.5em; color: #ff5722; margin-bottom: 5px;">40% OFF</div>
+        <div class="price" style="font-size: 2em; color: #4caf50; margin-bottom: 5px;">$999</div>
+        <div class="regular-price" style="font-size: 1em; color: #777; text-decoration: line-through; margin-bottom: 10px;">Regular: $1665</div>
+        <p class="offer-description" style="font-size: 1em; color: #555; margin-bottom: 15px;">Discover Thailand! 5 Days & 6 Nights with 5-Star Accommodation, Transport & Food.</p>
+        <button class="btn-book" style="background-color: #ff9800;">View Details</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h2>Latest News</h2>
+    <p>Travel News from all over the world</p>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <img src="b1.jpg" alt="Blog 1">
+        <div class="blog-content">
+          <div class="blog-meta">Trending News · 15 November 2045</div>
+          <div class="blog-title">Discover On Beautiful Weather, Fantastic Foods And Historical Place in Prag</div>
+          <div class="blog-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="b2.jpg" alt="Blog 2">
+        <div class="blog-content">
+          <div class="blog-meta">Trending News · 15 November 2045</div>
+          <div class="blog-title">Discover On Beautiful Weather, Fantastic Foods And Historical Place In India</div>
+          <div class="blog-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="b3.jpg" alt="Blog 3">
+        <div class="blog-content">
+          <div class="blog-meta">Trending News · 15 November 2045</div>
+          <div class="blog-title">10 Most Natural Place To Discover</div>
+          <div class="blog-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
