@@ -1,126 +1,220 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Arial', sans-serif;
-    color: #333;
-  }
-  .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 80px;
-    background-color: rgba(255,255,255,0.95);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-  }
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  .logo span {
-    color: #00d9ff;
-  }
-  .nav {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-  }
-  .nav a {
-    text-decoration: none;
-    color: #333;
-    position: relative;
-  }
-  .nav a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #00d9ff;
-  }
-  .book-btn {
-    background: #00d9ff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .hero {
-    background: url('hero.jpg') no-repeat center center/cover;
-    height: 100vh;
-    padding-top: 120px;
-    text-align: center;
-    color: white;
-    position: relative;
-  }
-  .hero-text h1 {
-    font-size: 50px;
-    font-weight: bold;
-  }
-  .btn-explore {
-    margin-top: 20px;
-    display: inline-block;
-    background: #00d9ff;
-    padding: 12px 25px;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-  
-  .booking-panel {
-    background: white;
-    color: black;
-    padding: 30px;
-    width: 80%;
-    margin: 30px auto;
-    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: left;
-  }
-  .tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .tab {
-    padding: 10px 20px;
-    background: #f1f1f1;
-    border: none;
-    cursor: pointer;
-  }
-  .tab.active {
-    background: #00d9ff;
-    color: white;
-  }
-  .booking-form {
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-  .booking-form input[type="text"],
-  .booking-form input[type="number"],
-  .booking-form input[type="date"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  .booking-form input[type="range"] {
-    grid-column: span 2;
-  }
-  .btn-search {
-    background: #00d9ff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    grid-column: span 2;
-    cursor: pointer;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  background-color: #000;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 80px;
+  background-color: #111;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+.logo span {
+  color: red;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.nav a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: red;
+}
+.book-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.hero {
+  background: url('images/hero.jpg') no-repeat center center/cover;
+  height: 100vh;
+  padding-top: 120px;
+  text-align: center;
+  position: relative;
+}
+.hero-text h1 {
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+}
+.btn-explore {
+  margin-top: 20px;
+  display: inline-block;
+  background: red;
+  padding: 12px 25px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.booking-panel {
+  background: #222;
+  color: white;
+  padding: 30px;
+  width: 80%;
+  margin: 30px auto;
+  box-shadow: 0px 5px 30px rgba(255, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.tab {
+  padding: 10px 20px;
+  background: #333;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.tab.active {
+  background: red;
+}
+
+.booking-form {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.booking-form input,
+.booking-form button {
+  padding: 10px;
+  border-radius: 5px;
+}
+.booking-form input {
+  border: 1px solid #555;
+  background: #111;
+  color: white;
+}
+.btn-search {
+  background: red;
+  color: white;
+  border: none;
+  grid-column: span 2;
+  cursor: pointer;
+}
+
+.movie-section {
+  padding: 100px 40px;
+  background: #111;
+  text-align: center;
+}
+.movie-section h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: red;
+}
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.movie-card {
+  background: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(255, 0, 0, 0.1);
+}
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.movie-info {
+  padding: 15px;
+}
+.btn-book {
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.offers {
+  padding: 100px 40px;
+  text-align: center;
+  background: #1a1a1a;
+}
+.offer-card {
+  background: #333;
+  border: 1px solid red;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.offer-card img {
+  width: 100%;
+}
+.offer-text {
+  padding: 20px;
+}
+
+.blog {
+  padding: 100px 40px;
+  background: #111;
+  text-align: center;
+}
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.blog-card {
+  background: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
+}
+.blog-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.blog-card h3 {
+  padding: 15px;
+  font-size: 18px;
+}
+.blog-card p {
+  padding: 0 15px 15px;
+}
+.blog-card a {
+  display: block;
+  padding: 0 15px 20px;
+  color: red;
+  text-decoration: none;
+  font-weight: bold;
+}
